@@ -1,10 +1,15 @@
 namespace MicrosoftDocsParsing.ResultMessanger;
 
+/// <summary>
+/// Результаты обработки файла
+/// </summary>
 public static class FileProcessResult
 {
     public static string Success => "Ok";
 
     public static string SuccessProcess(string filePath) => $"{Success}: {filePath}";
+
+    public static string CannotOpen(string filePath) => $"File {filePath} already opened on this machine";
     
     public static string DirectoryNotFound(string directoryPath) => $"Directory {directoryPath} not found";
 
