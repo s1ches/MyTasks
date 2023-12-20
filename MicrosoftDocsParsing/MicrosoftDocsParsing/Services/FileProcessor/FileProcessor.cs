@@ -54,9 +54,9 @@ public class FileProcessor : IFileProcessor
         var destinationFilePath =
             @$"{Settings.FileDirectory}\{Settings.ParsedFiles}\{filePath.GetFileName().WithoutExtension()}.txt";
 
-        var result = FormResultTextAsync(filePath);
+        var result = FormResultText(filePath);
         
-        await File.WriteAllLinesAsync(destinationFilePath, result.ToBlockingEnumerable());
+        await File.WriteAllLinesAsync(destinationFilePath, result);
         
         return FileProcessResult.SuccessProcess(filePath);
     }
@@ -66,7 +66,7 @@ public class FileProcessor : IFileProcessor
     /// </summary>
     /// <param name="filePath">Путь к файлу .doc или .docx</param>
     /// <returns>Коллекция распаршенных параграфов</returns>
-    private static async IAsyncEnumerable<string> FormResultTextAsync(string filePath)
+    private static IEnumerable<string> FormResultText(string filePath)
     {
         using var document = WordprocessingDocument.Open(filePath, isEditable: false);
 
@@ -74,12 +74,8 @@ public class FileProcessor : IFileProcessor
             yield break;
 
         var paragraphs = document.MainDocumentPart.Document.Body.Descendants<Paragraph>();
-        var processParagraphTasks = new List<Task<string>>();
         
         foreach (var paragraph in paragraphs)
-            processParagraphTasks.Append(Task.Run(() => paragraph.TextWithoutHiddenElements()));
-        
-        foreach (var task in processParagraphTasks)
-            yield return await task;
+            yield return paragraph.TextWithoutHiddenElements();
     }
 }
