@@ -5,7 +5,7 @@ namespace MicrosoftDocsParsing.Services.FileProcessor;
 /// </summary>
 public enum FileExtension
 {
+    Undefined,
     Doc,
-    Docx,
-    Undefined
+    Docx
 }
