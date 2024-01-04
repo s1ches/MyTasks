@@ -10,3 +10,8 @@ Don't use method ProcesAllUnparsedFilesAsync it's not work on big count of unpar
 What u can do?
 1. U can finalize it correctly
 2. U can rewrite it to synchronously files processing
+
+## 2. NotesApi
+
+I work on it now:)
+https://www.youtube.com/playlist?list=PLEtg-LdqEKXbpq4RtUp1hxZ6ByGjnvQs4
