@@ -3,8 +3,10 @@ using Notes.Application;
 using Notes.Application.Common.Mappings;
 using Notes.Application.Interfaces;
 using Notes.Persistence;
+using Notes.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 var services = builder.Services;
 var configuration = builder.Configuration;
@@ -46,6 +48,7 @@ try
     Console.WriteLine(ex.Message);
 }
 
+app.UseCustomExceptionHandler();
 app.UseRouting();
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
