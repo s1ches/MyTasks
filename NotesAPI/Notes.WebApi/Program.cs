@@ -1,13 +1,16 @@
 using System.Reflection;
+using Asp.Versioning.ApiExplorer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
 using Notes.Application;
 using Notes.Application.Common.Mappings;
 using Notes.Application.Interfaces;
 using Notes.Persistence;
+using Notes.WebApi;
 using Notes.WebApi.Middleware;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 var services = builder.Services;
 var configuration = builder.Configuration;
@@ -17,6 +20,9 @@ services.AddAutoMapper(config =>
     config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
     config.AddProfile(new AssemblyMappingProfile(typeof(INotesDbContext).Assembly));
 });
+ 
+services.AddApiVersioning().AddApiExplorer(opt => opt.GroupNameFormat = "'v'VVV");
+services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
 services.AddApplication();
 services.AddPersistence(configuration);
@@ -45,15 +51,28 @@ services.AddAuthentication(config =>
 
 var app = builder.Build();
 
+var serviceProvider = app.Services.CreateScope().ServiceProvider;
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(cfg =>
+    {
+        var provider = serviceProvider.GetRequiredService<IApiVersionDescriptionProvider>();
+        
+        foreach (var description in provider.ApiVersionDescriptions)
+        {
+            cfg.SwaggerEndpoint(
+                $"/swagger/{description.GroupName}/swagger.json",
+                description.GroupName.ToUpperInvariant());
+            cfg.RoutePrefix = string.Empty;
+        }
+    });
 }
 
 try
 {
-    var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<NotesDbContext>();
+    var context = serviceProvider.GetRequiredService<NotesDbContext>();
     DbInitializer.Initialize(context);
 }catch (Exception ex) 
 {
