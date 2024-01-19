@@ -32,5 +32,5 @@ I think, that it can be Simple chat with using ~~SignalR~~, ~~TypeScript+React~~
 
 ###### P.S. 
 
-Project structure must be like that, but my file system decided to joke with me
+Project structure must be like that, but my file system decided to joke with me<br>
 ![image](https://github.com/s1ches/MyTasks/assets/121990701/7fa828dd-f8a8-4461-a0cd-653c4404cb81)
