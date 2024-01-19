@@ -29,3 +29,8 @@ And now I need realize my own project, using this technologies
 I think, that it can be Simple chat with using ~~SignalR~~, ~~TypeScript+React~~ and other technologies, which I use in this project
 
 #### If u wanna try to start my app, u need create front-end part, or delete [Authorize] attributes from controller methods:)
+
+###### P.S. 
+
+Project structure must be like that, but my file system decided to joke with me
+![image](https://github.com/s1ches/MyTasks/assets/121990701/7fa828dd-f8a8-4461-a0cd-653c4404cb81)
