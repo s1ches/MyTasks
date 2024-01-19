@@ -13,5 +13,19 @@ What u can do?
 
 ## 2. NotesApi
 
-I work on it now:)
-https://www.youtube.com/playlist?list=PLEtg-LdqEKXbpq4RtUp1hxZ6ByGjnvQs4
+Finally I've done this project by this YouTube Course: https://www.youtube.com/playlist?list=PLEtg-LdqEKXbpq4RtUp1hxZ6ByGjnvQs4
+
+So, what can I say about this work, it's very interesting project for me, because this one have a lot of new technologies, patterns for me, like
+- I became familiar with the concept of **Clean Architecture**
+- Pattern **CQRS + MediatR** (Library)
+- **Fluent Validation**
+- **Identity Server4**
+- **OAuth2.0 and OIDC** (OpenID Connect)
+- **CORS**
+- **Serilog**
+- **AutoMapper**
+
+And now I need realize my own project, using this technologies
+I think, that it can be Simple chat with using ~~SignalR~~, ~~TypeScript+React~~ and other technologies, which I use in this project
+
+#### If u wanna try to start my app, u need create front-end part, or delete [Authorize] attributes from controller methods:)
