@@ -8,6 +8,9 @@ using Notes.Application.Interfaces;
 using Notes.Persistence;
 using Notes.WebApi;
 using Notes.WebApi.Middleware;
+using Notes.WebApi.Services;
+using Serilog;
+using Serilog.Events;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -49,6 +52,11 @@ services.AddAuthentication(config =>
     opt.RequireHttpsMetadata = false;
 });
 
+services.AddSingleton<ICurrentUserService, CurrentUserService>();
+services.AddHttpContextAccessor();
+
+builder.Host.UseSerilog();
+
 var app = builder.Build();
 
 var serviceProvider = app.Services.CreateScope().ServiceProvider;
@@ -70,13 +78,17 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+Log.Logger = new LoggerConfiguration().MinimumLevel.Override("Microsoft", LogEventLevel.Information).
+    WriteTo.File("NotesWebAppLog-.txt", rollingInterval: RollingInterval.Day).
+    CreateLogger();
+
 try
 {
     var context = serviceProvider.GetRequiredService<NotesDbContext>();
     DbInitializer.Initialize(context);
 }catch (Exception ex) 
 {
-    Console.WriteLine(ex.Message);
+    Log.Fatal(ex, "An error occurred while app initialization");
 }
 
 app.UseCustomExceptionHandler();
