@@ -29,14 +29,14 @@ public static class Configuration
     {
         new ()
         {
-            ClientId = "notes-web-api",
+            ClientId = "notes-web-app",
             ClientName = "Notes Web",
             AllowedGrantTypes = GrantTypes.Code,
             RequireClientSecret = false,
             RequirePkce = true,
-            RedirectUris = { "http://.../signin-oidc" },
-            AllowedCorsOrigins = { "http://..." },
-            PostLogoutRedirectUris = { "http://.../signout-oidc" },
+            RedirectUris = { "http://localhost:3000/signin-oidc" },
+            AllowedCorsOrigins = { "http://localhost:3000" },
+            PostLogoutRedirectUris = { "http://localhost:3000/signout-oidc" },
             AllowedScopes =
             {
                 IdentityServerConstants.StandardScopes.OpenId,
