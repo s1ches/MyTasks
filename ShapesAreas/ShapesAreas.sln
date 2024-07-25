@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapesAreas.Library", "ShapesAreas.Library\ShapesAreas.Library.csproj", "{FF565819-44CC-44B2-ADBA-86B9F7B09CE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShaperAreas.Tests", "ShaperAreas.Tests\ShaperAreas.Tests.csproj", "{4F7F3B12-BA84-4440-8160-85F43DC48483}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF565819-44CC-44B2-ADBA-86B9F7B09CE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF565819-44CC-44B2-ADBA-86B9F7B09CE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF565819-44CC-44B2-ADBA-86B9F7B09CE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF565819-44CC-44B2-ADBA-86B9F7B09CE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F7F3B12-BA84-4440-8160-85F43DC48483}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F7F3B12-BA84-4440-8160-85F43DC48483}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F7F3B12-BA84-4440-8160-85F43DC48483}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F7F3B12-BA84-4440-8160-85F43DC48483}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
